@@ -19,11 +19,11 @@ var server = http.createServer(function(req, res){
     // the default query - so nothing breaks
     let query = 'select * from dummy';
 
-    // The stuff in this section can be changed, I am just trying to show my idea
+    // The stuff in this section needs to be changed, I am just trying to show what my idea is
     var h1 = "DEFAULT TITLE";
     let h2 = "default sub title";
-    let zipcode = '33525';
-    let parcelID = '26-26-15-0030-00000-5490';
+    let zipcode = '33525'; // get this as input from the webpage
+    let parcelID = '26-26-15-0030-00000-5490'; // get this as input from the webpage
 
     if (req.url == "/"){
         console.log("stuff");
