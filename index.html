@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang = "en">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h1>Pasco Properties</h1>
+<h2 id="que1">Query 1</h1>
+<h2 id="que2">Query 2</h1>
+<h2 id="que3">Query 3</h1>
+<h2 id="que4">Query 4</h1>
+<h2 id="que5">Query 5</h1>
+<h2 id="query-description">  </h2>
+<h3 id= "query-prompt"></h3>
+<form id="userInput"></form>
+<canvas id = "myChart"></canvas>
+<script>
+// ------------for navigation:
+document.getElementById("que1").onclick = (e) => {
+    location.search = 'query=1';
+};
+document.getElementById("que2").onclick = (e) => {
+    location.search = 'query=2';
+};
+document.getElementById("que3").onclick = () => {
+  location.search = 'query=3';
+}
+document.getElementById("que4").onclick = () => {
+  location.search = 'query=4';
+}
+document.getElementById("que5").onclick = () => {
+  location.search = 'query=5';
+}
+
+</script>
+</body>
+</html>
