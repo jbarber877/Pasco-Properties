@@ -1,0 +1,39 @@
+{
+  "name": "pasco-properties",
+  "version": "1.0.0",
+  "description": "- Jared Barber   - Samuel Roberson   - Timothy Schneider   - Michael Marron",
+  "main": "app.js",
+  "dependencies": {
+    "chart": "^0.1.2",
+    "color-convert": "^0.2.1",
+    "chart.js": "^3.6.1",
+    "filestream": "^5.0.0",
+    "hat": "^0.0.3",
+    "inherits": "^2.0.4",
+    "hashish": "^0.0.4",
+    "is-typedarray": "^1.0.0",
+    "mrcolor": "^0.0.1",
+    "oracledb": "^5.3.0",
+    "readable-stream": "^3.6.0",
+    "safe-buffer": "^5.2.1",
+    "typedarray-to-buffer": "^3.1.5",
+    "string_decoder": "^1.3.0",
+    "traverse": "^0.6.6",
+    "util-deprecate": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swroberson/Pasco-Properties.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swroberson/Pasco-Properties/issues"
+  },
+  "homepage": "https://github.com/swroberson/Pasco-Properties#readme"
+}
