@@ -1,35 +1,62 @@
 <!DOCTYPE html>
 <html lang = "en">
-<body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<h1>Pasco Properties</h1>
-<h2 id="que1">Query 1</h1>
-<h2 id="que2">Query 2</h1>
-<h2 id="que3">Query 3</h1>
-<h2 id="que4">Query 4</h1>
-<h2 id="que5">Query 5</h1>
-<h2 id="query-description">  </h2>
-<h3 id= "query-prompt"></h3>
-<form id="userInput"></form>
-<canvas id = "myChart"></canvas>
-<script>
-// ------------for navigation:
-document.getElementById("que1").onclick = (e) => {
-    location.search = 'query=1';
-};
-document.getElementById("que2").onclick = (e) => {
-    location.search = 'query=2';
-};
-document.getElementById("que3").onclick = () => {
-  location.search = 'query=3';
-}
-document.getElementById("que4").onclick = () => {
-  location.search = 'query=4';
-}
-document.getElementById("que5").onclick = () => {
-  location.search = 'query=5';
-}
+    <head>
+      <meta charset = "UTF-8"> 
+      <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+      <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+      <title>AveragePrice</title> 
 
-</script>
-</body>
+      <style>
+          /* Basic Css */
+          body{ font-family:verdana; color: #000; padding: 30px;}
+          h1{font-size: 48px; text-transform: uppercase; letter-spacing: 2px; text-align: center;}
+          
+
+          /* The sidebar menu */
+          .sidenav {height: 100%; width: 200px; position: fixed; z-index: 1; top: 0; left: 0; background-color: #111; overflow-x: hidden; padding-top: 20px;}
+          .sidenav a {padding: 6px 8px 6px 16px; text-decoration: none; font-size: 25px; color: #818181; display: block;}
+          .sidenav a:hover {color: #f1f1f1;}
+
+          /* Style page content */
+          .main {margin-left: 160px; padding: 0px 10px;} 
+          .main h2{text-align: center;}
+          .main p{padding-left: 60px; padding-top: 60px;}    
+      </style>
+    </head>
+
+    <body>
+
+      <!-- Side navigation -->
+      <div class="sidenav" id="derp">
+        <h2 ><a href="/MyNode/template.html" >Average Price</a><br>
+        <h2 ><a href="/MyNode/LotSize.html" >Lot Size</a><br>
+        <h2 ><a href="/MyNode/SOH.html" >Homestead</a><br>
+        <h2 ><a href="/MyNode/Sinkhole.html" >Sinkhole</a><br>
+        <h2 ><a href="/MyNode/Value.html" >Propery Valuation</a><br>
+        <h2 ><a href="/MyNode/LotSize.html" >Sales Percent</a><br>
+           
+
+
+      </div>
+
+      <div class = "main">
+        <h1>Pasco Properties</h1>
+
+        <h2>Jared Barber</h2>
+        <h2>Michael Marron</h2>
+        <h2>Samuel Roberson</h2>
+        <h2>Timothy Schneider</h2>
+        
+        <p>
+          Nulla facilisi. Praesent eget blandit eros, id semper mi. Aliquam faucibus mauris nulla. Nullam venenatis ex justo, vitae ultrices dolor dictum at. Duis iaculis
+          purus vitae mauris suscipit malesuada. Fusce porttitor nec erat sit amet imperdiet. Vestibulum sit amet odio vitae ante vehicula tempus. Pellentesque non turpis
+          erat. Aliquam maximus quis libero sit amet hendrerit. Aliquam quis neque neque. Maecenas quis laoreet velit. Aliquam posuere lorem ac tincidunt sagittis. Nulla 
+          ac ante odio. Vestibulum fermentum tellus ac mollis aliquam.</p><br>
+
+        <p>(C) This website is totally awesome <br></p>
+      </div>
+    </body>
 </html>
+
