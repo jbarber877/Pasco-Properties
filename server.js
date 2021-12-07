@@ -3,7 +3,6 @@ var http = require('http');
 var fs = require('fs');
 var url= require('url');
 const { outFormat } = require('oracledb');
-const db_query4 = require('./db_query4');
 const oracledb = require('oracledb');
 
 async function db_query1(zip, from, to) {
@@ -455,6 +454,10 @@ var server = http.createServer(function(req, res){
     }
     if (temp.query=='3'){
         file = "./Query3.html";
+        if(temp.zip!== undefined){
+          db_query3(temp.zip);
+          file = 'Query3_chart.html';
+        }
     }
     if (temp.query=='4'){
         file = "./Query4.html";
