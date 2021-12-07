@@ -28,3 +28,42 @@ module.exports = {
         new_query +=                              " GROUP BY to_char(sale_date, 'YYYY-MM')) \n";
         // The percent difference between sale prices in the affected neighborhood and the zipcode in general 
         new_query += " select (1-((mu - nu)/mu)) as PercentDifference, cdate as Foo from Neighborhood NATURAL JOIN ZipCode where (1-((mu - nu)/mu)) < 2000000 order by cdate";
+
+
+
+query = "WITH ";
+          // Gets the square footage, lot size, year built, and zip code for the subject property
+          // Only 1 row will be returned, but the "Fetch first" statement is important for the join later
+          query += "Subject (SF, L, B, Yrblt, ZIP) AS (SELECT Gross_Area, Land_SQ_FT, BLDG_Bathrooms, BLDG_ActyrbLT, site_Zip \n";
+          query +=                                     "FROM Parcel P, Building B \n";
+          query +=                                     "WHERE P.Parcel_ID = B.PARCEL_ID\n";
+          query +=                                     ("AND P.Parcel_ID = " + Parcel_ID + '\n');
+          query +=                                      "FETCH FIRST 1 ROWS ONLY),\n";
+          // Gets the number of garages, pools and fireplaces for the subject property
+          // Only 1 row will be returned, but the "Fetch first statement is important for the join later
+          query += "SubjectSub (G, P, F) AS (SELECT (SELECT COUNT(*) FROM Sub_Area\n";
+          query +=                                  ("WHERE Parcel_ID = " + Parcel_ID + '\n');
+          query +=                                  "AND DESCRIPTION LIKE '%Garage%'),\n";
+          query +=                                 "(SELECT COUNT(*) FROM Sub_Area\n";
+          query +=                                  ("WHERE Parcel_ID = " + Parcel_ID + '\n');
+          query +=                                  "AND DESCRIPTION LIKE '%POOL%'),\n";
+          query +=                                "(SELECT COUNT(*) FROM Sub_Area\n";
+          query +=                         ("WHERE Parcel_ID = " + Parcel_ID + '\n');
+          query +=                         "AND DESCRIPTION LIKE '%FIREPLACE%')\n";
+          query +=                 "FROM Sub_Area\n";
+          query +=                 ("WHERE Parcel_ID = " + Parcel_ID + '\n');
+          query +=                 "FETCH FIRST 1 ROWS ONLY),\n";
+          //  Gets the parcel id, sale price, square footage, lot size, number of bathrooms, and sale date for the comparable properties                                        
+          query += "Comparables (a, Si, SFi, Li, Bi, charDate) AS (SELECT P.Parcel_ID, Price, Gross_Area, Land_Sq_Ft, Bldg_Bathrooms, to_char(sale_date, 'YYYY-MM')\n";
+          query +=                                 "FROM Sale S, Parcel P, Building B, Subject\n";
+          query +=                                 "WHERE P.Parcel_ID = B.Parcel_ID AND P.Parcel_ID = S.Parcel_ID\n";
+          query +=                                 "AND Land_SQ_FT BETWEEN (0.8*Subject.L) AND (1.2*Subject.L)\n";
+          query +=                                 "AND Gross_Area BETWEEN (0.8*Subject.SF) AND (1.2*Subject.SF)\n";
+          query +=                                 "AND Bldg_Actyrblt BETWEEN (Subject.yrblt-5) AND (Subject.yrblt+5)\n";
+          query +=                                 "AND Site_Zip = Subject.Zip\n"
+          query +=                                 "AND Price > 0)\n";                                       
+                                                
+          query +=      "SELECT (SUM(Si - 37*(SF-SFi) + 0.14*(L-Li) + (0.10*Si)*(B-Bi) + 1000*(15*G +11*P + 3*F))/Count(*)) as Value, charDate\n";
+          query +=      "FROM Comparables, Subject, SubjectSub\n"
+          query +=      "GROUP BY charDate\n";
+          query +=      "ORDER BY charDate ASC\n";
