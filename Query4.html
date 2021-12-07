@@ -33,7 +33,12 @@
   <h2 id="que1">Query 4</h1>
   <h2 id="query-description">  </h2>
   <h3 id= "query-prompt"></h3>
-  <form id="userInput"></form>
+  <form id="userInput">
+    <input type="number" id="zipcode">
+    <input type="number" id="year_x">
+    <input type="number" id="year_y">
+    <input type="submit" value="Submit">
+</form>
   <canvas id = "myChart"></canvas>
 </div>
 
@@ -57,21 +62,16 @@ document.getElementById("que5").onclick = () => {
     document.getElementById("query-description").innerHTML= "What is the median lot size by year built?";
   document.getElementById("query-prompt").innerHTML="Enter a zip code:"
    // create form for user input
-  const qform = document.getElementById("userInput");
-  const in1 = document.createElement("input");
-  in1.type = "number";
-  in1.id= "zipcode";
-  const sub = document.createElement("input");
-  sub.type = "submit";
-  const temp = qform.replaceChildren(in1, sub);
-  // set up submit button
-  qform.addEventListener("submit", (e) => {
-      e.preventDefault();
-     z = document.getElementById("zipcode").value;
-     
-    console.log(z);
-
-  })
+   document.getElementById("query-prompt").innerHTML="Enter a zip code, start year, and end year:"
+      const qform = document.getElementById("userInput");
+      qform.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const z = document.getElementById("zipcode").value;
+        const yx = document.getElementById("year_x").value;
+        const yy = document.getElementById("year_y").value;
+        location.search += '&zip=' + z + '&year_x=' + yx + '&year_y=' + yy;
+        console.log(z);
+      })
 
 </script>
 
