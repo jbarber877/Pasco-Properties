@@ -314,6 +314,119 @@ async function db_query3(zip) {
   }
 }
 
+async function db_query4(year_x, year_y) {
+  // The average sale prices and dates of sales where the property itself does not have a sinkhole, but another property in the neighborhood does
+  let new_query = "WITH Neighborhood (mu, cdate) AS (select avg(price), to_char(sale_date, 'YYYY-MM') \n";
+  new_query +=                                     " from Parcel NATURAL JOIN Land NATURAL JOIN Sale \n";
+  new_query +=                                     " where sinkhole_status is NULL \n";
+  new_query +=                                     ("AND SALE_DATE BETWEEN to_date('01/01/" + year_x + "', 'DD/MM/YYYY') and to_date('01/01/" + year_y + "', 'DD/MM/YYYY') \n");
+  new_query +=                                     " and neighborhood_code IN (select distinct neighborhood_code \n";
+  new_query +=                                                              " from parcel NATURAL JOIN Land \n";
+  new_query +=                                                              " where sinkhole_status is not NULL) \n";
+  new_query +=                                    " GROUP BY to_char(sale_date, 'YYYY-MM')), \n";  
+  // The average price in the zip code, regardless of sinkhole status
+  new_query += "ZipCode (nu, cdate) AS (select avg(price), to_char(sale_date, 'YYYY-MM') \n"; 
+  new_query +=                              " from Parcel NATURAL JOIN Land NATURAL JOIN Sale \n";
+  new_query +=                              " GROUP BY to_char(sale_date, 'YYYY-MM')) \n";
+  // The percent difference between sale prices in the affected neighborhood and the zipcode in general 
+  new_query += " select (1-((mu - nu)/mu)) as PercentDifference, cdate as Foo from Neighborhood NATURAL JOIN ZipCode where (1-((mu - nu)/mu)) < 2000000 order by cdate";
+
+  let connection;
+  let chart_file_text;
+  try {
+
+    connection = await oracledb.getConnection({ user: "Barber.J", password: "RedCedar3", connectionString: "oracle.cise.ufl.edu/orcl" });
+
+    console.log("Successfully connected to Oracle Database");
+    let text = new_query
+    let result = await connection.execute(text, []);
+
+    let yAxis = "";
+    let xAxis = "";
+    for (let i = 0; i < result.rows.length; i++) { 
+        xAxis += (result.rows[i][0]);
+        yAxis += ("'" + result.rows[i][1] + "'");
+
+        if (i+1 < result.rows.length){
+            xAxis += ",";
+            yAxis += ",";
+        }
+    }
+    /*
+      let y = [];
+      let x =[];
+      result.rows.forEach((pair) => {
+        y.push(pair[0]);
+        x.push(pair[1]);
+      })
+      console.log(x);
+*/
+   
+
+
+      //console.log(years);
+      //console.log(percentages);
+      // pass info from database to chart
+      chart_file_text = `<!DOCTYPE html>
+      <html lang="en">
+          <head>
+          </head>
+          <body>
+              <h1>Query Results</h1>
+              <h2 id="return">return</h2>
+              <div >
+                  <canvas id="myChart"></canvas>
+              </div>
+              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+              <script >
+                  document.getElementById("return").onclick = () => {
+                      location.search = '';
+                  }
+                  const labels = [` + yAxis + `];
+                  console.log(labels);
+          const data = {
+            labels: labels,
+            datasets: [{
+              label: 'percent difference',
+              backgroundColor: 'rgb(255, 99, 132)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [` + xAxis + `]
+          }]
+          };
+          const config = {
+            type: 'line',
+            data: data,
+            options: {}
+          };
+            // === include 'setup' then 'config' above ===
+          
+            const myChart = new Chart(
+              document.getElementById('myChart'),
+              config
+            );
+              </script>
+          </body>
+      </html>` 
+      fs.writeFile('Query4_chart.html', chart_file_text, err => {
+          if (err){
+              console.error(err)
+              return
+          }
+      })
+  } catch (err) {
+    console.error(err);
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+
+
+}
 
 var server = http.createServer(function(req, res){
 
@@ -345,8 +458,8 @@ var server = http.createServer(function(req, res){
     }
     if (temp.query=='4'){
         file = "./Query4.html";
-        if(temp.zip!== undefined){
-          db_query4(temp.zip, temp.year_x, temp.year_y);
+        if(temp.year_x!== undefined){
+          db_query4(temp.year_x, temp.year_y);
           file = 'Query4_chart.html';
         }
     }
