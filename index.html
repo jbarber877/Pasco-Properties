@@ -9,8 +9,8 @@
 
       /* The sidebar menu */
       .sidenav {height: 100%; width: 200px; position: fixed; z-index: 1; top: 0; left: 0; background-color: #111; overflow-x: hidden; padding-top: 20px;}
-      .sidenav a {padding: 6px 8px 6px 16px; text-decoration: none; font-size: 25px; color: #818181; display: block;}
-      .sidenav a:hover {color: #f1f1f1;}
+      .sidenav h2 {padding: 6px 8px 6px 16px; text-decoration: none; font-size: 25px; color: #818181; display: block;}
+      .sidenav h2:hover {color: #f1f1f1;}
 
       /* Style page content */
       .main {margin-left: 160px; padding: 0px 10px;} 
@@ -21,11 +21,14 @@
 <body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <h1>Pasco Properties</h1>
-<h2 id="que1">Query 1: Median Lot Size by zip</h1>
-<h2 id="que2">Query 2: Percentage of total sales by zip</h1>
-<h2 id="que3">Query 3</h1>
-<h2 id="que4">Query 4</h1>
-<h2 id="que5">Query 5</h1>
+<div class="sidenav">
+  <h2 id="que1">Query 1: Median Lot Size by zip</h2>
+    <h2 id="que2">Query 2: Percentage of total sales by zip</h2>
+    <h2 id="que3">Query 3</h2>
+    <h2 id="que4">Query 4</h2>
+    <h2 id="que5">Query 5</h2>
+</div>
+
 <h2 id="query-description">  </h2>
 <h3 id= "query-prompt"></h3>
 <form id="userInput"></form>

@@ -6,11 +6,12 @@
       body{ font-family:verdana; color: #000; padding: 30px;}
       h1{font-size: 48px; text-transform: uppercase; letter-spacing: 2px; text-align: center;}
       
+      .middle-message{text-align: center;}
 
       /* The sidebar menu */
       .sidenav {height: 100%; width: 200px; position: fixed; z-index: 1; top: 0; left: 0; background-color: #111; overflow-x: hidden; padding-top: 20px;}
-      .sidenav a {padding: 6px 8px 6px 16px; text-decoration: none; font-size: 25px; color: #818181; display: block;}
-      .sidenav a:hover {color: #f1f1f1;}
+      .sidenav h2 {padding: 6px 8px 6px 16px; text-decoration: none; font-size: 25px; color: #818181; display: block;}
+      .sidenav h2:hover {color: #f1f1f1;}
 
       /* Style page content */
       .main {margin-left: 160px; padding: 0px 10px;} 
@@ -19,15 +20,40 @@
   </style>
   </head>
 <body>
+  <div class="sidenav">
+    <h2 id="que1">Query 1: Median Lot Size by zip</h2>
+      <h2 id="que2">Query 2: Percentage of total sales by zip</h2>
+      <h2 id="que3">Query 3: Tax Exemption Exploitation</h2>
+      <h2 id="que4">Query 4</h2>
+      <h2 id="que5">Query 5</h2>
+  </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<h1>Pasco Properties: Query 1</h1>
-<h2 id="que1">Query 1</h1>
-<h2 id="query-description">  </h2>
-<h3 id= "query-prompt"></h3>
-<form id="userInput"></form>
-<canvas id = "myChart"></canvas>
+<div class="middle-message">
+  <h1>Pasco Properties</h1>
+  <h2 id="que1">Query 4</h1>
+  <h2 id="query-description">  </h2>
+  <h3 id= "query-prompt"></h3>
+  <form id="userInput"></form>
+  <canvas id = "myChart"></canvas>
+</div>
 
 <script>
+  // ------------for navigation:
+document.getElementById("que1").onclick = (e) => {
+    location.search = 'query=1';
+};
+document.getElementById("que2").onclick = (e) => {
+    location.search = 'query=2';
+};
+document.getElementById("que3").onclick = () => {
+  location.search = 'query=3';
+}
+document.getElementById("que4").onclick = () => {
+  location.search = 'query=4';
+}
+document.getElementById("que5").onclick = () => {
+  location.search = 'query=5';
+}
     document.getElementById("query-description").innerHTML= "What is the median lot size by year built?";
   document.getElementById("query-prompt").innerHTML="Enter a zip code:"
    // create form for user input
