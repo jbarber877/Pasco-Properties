@@ -59,19 +59,27 @@ document.getElementById("que4").onclick = () => {
 document.getElementById("que5").onclick = () => {
   location.search = 'query=5';
 }
-    document.getElementById("query-description").innerHTML= "What is the median lot size by year built?";
-  document.getElementById("query-prompt").innerHTML="Enter a zip code:"
+   document.getElementById("query-description").innerHTML= "How does presence of sinkholes affect sales price?";
+  document.getElementById("query-prompt").innerHTML="Enter a start year and end year:"
    // create form for user input
-   document.getElementById("query-prompt").innerHTML="Enter a zip code, start year, and end year:"
-      const qform = document.getElementById("userInput");
-      qform.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const z = document.getElementById("zipcode").value;
-        const yx = document.getElementById("year_x").value;
-        const yy = document.getElementById("year_y").value;
-        location.search += '&zip=' + z + '&year_x=' + yx + '&year_y=' + yy;
-        console.log(z);
-      })
+  const qform = document.getElementById("userInput");
+  const in1 = document.createElement("input");
+  in1.type = "number";
+  in1.id= "year_x";
+  const in2 = document.createElement("input");
+  in2.type = "number";
+  in2.id= "year_y";
+  const sub = document.createElement("input");
+  sub.type = "submit";
+  const temp = qform.replaceChildren(in1, in2, sub);
+  // set up submit button
+  qform.addEventListener("submit", (e) => {
+      e.preventDefault();
+     
+     const yx = document.getElementById("year_x").value;
+    const yy = document.getElementById("year_y").value;
+    location.search +=  '&year_x=' + yx + '&year_y=' + yy;
+  })
 
 </script>
 
