@@ -58,7 +58,7 @@ var server = http.createServer(function(req, res){
     }
     if (temp.query=='6'){
       file = "./Query6.html";
-      if(temp.sqf!== undefined){
+      if(temp.zip!== undefined){
         db_query6(temp.zip);
         file = 'Query6_chart.html';
       }
