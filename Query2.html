@@ -64,6 +64,7 @@
       <h2 id="que3">Query 3: Tax Exemption Exploitation</h2>
       <h2 id="que4">Query 4: Sinkholes and Sales Price</h2>
       <h2 id="que5">Query 5: House Value Over Time</h2>
+      <h2 id="que6">Query 6: Avg Price Sold by Zip </h2>
       </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -91,6 +92,9 @@ document.getElementById("que4").onclick = () => {
 }
 document.getElementById("que5").onclick = () => {
   location.search = 'query=5';
+}
+document.getElementById("que6").onclick = () => {
+  location.search = 'query=6';
 }
     // Show query description and user prompt
     document.getElementById("query-description").innerHTML= "What percentage of sales occurred in a given zip code?";
