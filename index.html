@@ -2,6 +2,7 @@
 <html lang = "en">
   <head>
     <link href = "index.css" rel = "stylesheet" type = "text/css">
+    <title> Pasco Properties </title>
     <script src="https://kit.fontawesome.com/de27bd6bac.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap" rel="stylesheet">
@@ -62,16 +63,34 @@
 <h1>Pasco Properties</h1>
 <div class="sidenav">
   <h2 id="que1">Query 1: Median Lot Size by Zip</h2>
-      <h2 id="que2">Query 2: Percentage of Total Sales by Zip</h2>
-      <h2 id="que3">Query 3: Tax Exemption Exploitation</h2>
-      <h2 id="que4">Query 4: Sinkholes and Sales Price</h2>
-      <h2 id="que5">Query 5: House Value Over Time</h2>
+    <h2 id="que2">Query 2: Percentage of Total Sales by Zip</h2>
+    <h2 id="que3">Query 3: Tax Exemption Exploitation</h2>
+    <h2 id="que4">Query 4: Sinkholes and Sales Price</h2>
+    <h2 id="que5">Query 5: Value Over Time</h2>
+    <h2 id="que6">Query 6: Avg Price Sold by Zip</h2>
 </div>
+
+<div class = "about">
+    
+                <h2 style="color:#05386b">What is the goal?</h2>
+                <p style= "color: #edf5e1;">A large amount of housing and property data is available to the public, however, drawing
+                    useful conclusions from this data can be a challenge. Our goal is to make it easier for prospective
+                    homeowners, current homeowners, and other members of the community to learn about housing
+                    trends in their area.</p>
+                <h2 style="color: #05386B;">How does it work?</h2>
+                <p style = "color: #edf5e1;"> Users may understandably be interested in knowing the trends
+                    in a given neighborhood or zip code. Learning about the different attributes of the communities
+                    we create better informed citizens and better communities. Our goals regarding trend analysis are
+                    to make it easy for users to identify patterns in the data, deviations from those patterns, and
+                    objectively make comparisons between two groups using predetermined queries.</p>
+                    <h2 style= "color: #05386B;">How much data is available?</h2>
+                    <!--This is where we need the function for the total amount of tuples -->
+                    <h2 style= "color: #05386B;">How to see it in action?</h2>
+                <p style = "color:#edf5e1">Click on any of the "Queries" in the navigation bar.</p>
+</div>
+
 <div class="middle-message">
-  <h2>Jared Barber</h2>
-  <h2>Michael Marron</h2>
-  <h2>Samuel Roberson</h2>
-  <h2>Timothy Schneider</h2>
+  <h2>Project by: Jared Barber, Samuel Roberson, Timothy Schneider, and Michael Marron</h2>
 </div>
 
 <script>
@@ -90,6 +109,10 @@ document.getElementById("que4").onclick = () => {
 }
 document.getElementById("que5").onclick = () => {
   location.search = 'query=5';
+}
+
+document.getElementById("que6").onclick = () => {
+  location.search = 'query=6';
 }
 
 </script>
