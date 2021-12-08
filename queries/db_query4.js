@@ -61,7 +61,7 @@ const db_query4 = function (year_x, year_y) {
                     const data = {
                         labels: labels,
                         datasets: [{
-                        label: 'percent difference',
+                        label: 'Percent Difference',
                         backgroundColor: 'rgb(255, 99, 132)',
                         borderColor: 'rgb(255, 99, 132)',
                         data: [` + xAxis + `]

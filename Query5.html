@@ -34,10 +34,20 @@
   <h2 id="que1">Query 5</h1>
   <h2 id="query-description">  </h2>
   <h3 id= "query-prompt"></h3>
-  <form id="userInput"></form>
+  <form id="userInput">
+    <input type="number" id="sqf" name="sqf" placeholder="House Size (sqf.)"/><br>
+    <input type="number" id="lotSize" name="lotSize" placeholder="Lot Size (sqf.)"><br>
+    <input type="number" id="bathrooms" name="bathrooms" placeholder="Number of Bathrooms"><br>
+    <input type="text" id="garage" name="garage" placeholder="Garage(s) (Y/N)"><br>
+    <input type="text" id="fireplace" name="fireplace" placeholder="Fireplace(s) (Y/N)"><br>
+    <input type="text" id="pool" name="pool" placeholder="Pool(s) (Y/N)"><br>
+    <input type="number" id="yearBuilt" name="yearBuilt" placeholder="Year Built"><br>
+    <input type="number" id="zip" name="zip" placeholder="Zipcode"><br><br>
+    <input type="submit" value="Submit">
+  </form>
   <canvas id = "myChart"></canvas>
 </div>
-
+<!-- sqf, lot_size, bathrooms, garage, fireplace, pool, yearBuilt, zip -->
 <script>
   // ------------for navigation:
 document.getElementById("que1").onclick = (e) => {
@@ -55,23 +65,21 @@ document.getElementById("que4").onclick = () => {
 document.getElementById("que5").onclick = () => {
   location.search = 'query=5';
 }
-    document.getElementById("query-description").innerHTML= "How has the value of a house changed over time?";
-  document.getElementById("query-prompt").innerHTML="Enter a zip code:"
-   // create form for user input
-  const qform = document.getElementById("userInput");
-  const in1 = document.createElement("input");
-  in1.type = "number";
-  in1.id= "zipcode";
-  const sub = document.createElement("input");
-  sub.type = "submit";
-  const temp = qform.replaceChildren(in1, sub);
+    document.getElementById("query-description").innerHTML= "How has the value of a specific type of house changed over time?";
+  document.getElementById("query-prompt").innerHTML="Enter home details:"
   // set up submit button
-  qform.addEventListener("submit", (e) => {
-      e.preventDefault();
-     z = document.getElementById("zipcode").value;
-     
-    console.log(z);
-
+  const qform = document.getElementById("userInput");
+  qform.addEventListener("submit", (event) => {
+      event.preventDefault();
+      a = document.getElementById("sqf").value;
+      b = document.getElementById("lotSize").value;
+      c = document.getElementById("bathrooms").value;
+      d = document.getElementById("garage").value;
+      e = document.getElementById("fireplace").value;
+      f = document.getElementById("pool").value;
+      g = document.getElementById("yearBuilt").value;
+      h = document.getElementById("zip").value;
+      location.search = `query=5&sqf=${a}&lotSize=${b}&bathrooms=${c}&garage=${d}&fireplace=${e}&pool=${f}&yearBuilt=${g}&zip=${h}`
   })
 
 </script>

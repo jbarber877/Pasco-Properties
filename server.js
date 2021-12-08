@@ -7,6 +7,7 @@ const db_query1 = require('./queries/db_query1');
 const db_query2 = require('./queries/db_query2');
 const db_query3 = require('./queries/db_query3');
 const db_query4 = require('./queries/db_query4');
+const db_query5 = require('./queries/db_query5');
 
 var server = http.createServer(function(req, res){
 
@@ -49,8 +50,8 @@ var server = http.createServer(function(req, res){
     }
     if (temp.query=='5'){
         file = "./Query5.html";
-        if(temp.year_x!== undefined){
-          db_query5(temp.zip);
+        if(temp.sqf!== undefined){
+          db_query5(temp.sqf,temp.lotSize,temp.bathrooms,temp.garage,temp.fireplace,temp.pool,temp.yearBuilt,temp.zip);
           file = 'Query5_chart.html';
         }
     }

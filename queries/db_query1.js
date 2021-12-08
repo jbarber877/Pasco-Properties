@@ -23,9 +23,16 @@ const db_query1 = function (zip, year_x, year_y) {
                     group by BLDG_ACTYRBLT
                     order by BLDG_ACTYRBLT`
                 );
-                for (let i = 0; i < result.rows.length; i++) {
-                    years.push(result.rows[i][0]); 
-                    lotSizes.push(result.rows[i][1]);
+                let lotSizes = "";
+                let years = "";
+                for (let i = 0; i < result.rows.length; i++) { 
+                    years += (result.rows[i][0]);
+                    lotSizes += ("'" + (result.rows[i][1] / 43560) + "'");
+
+                    if (i+1 < result.rows.length){
+                        years += ",";
+                        lotSizes += ",";
+                    }
                 }
                 console.log(years);
                 console.log(lotSizes);
@@ -49,7 +56,7 @@ const db_query1 = function (zip, year_x, year_y) {
                                 const data = {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Median Lot Size (sqft) for zipcode ${zip}',
+                                    label: 'Median Lot Size (acres) for zipcode ${zip}',
                                     backgroundColor: 'rgb(255, 99, 132)',
                                     borderColor: 'rgb(255, 99, 132)',
                                     data: [${lotSizes}]
