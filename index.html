@@ -84,7 +84,58 @@
                     to make it easy for users to identify patterns in the data, deviations from those patterns, and
                     objectively make comparisons between two groups using predetermined queries.</p>
                     <h2 style= "color: #05386B;">How much data is available?</h2>
-                    <!--This is where we need the function for the total amount of tuples -->
+                    <!-- The sql total tuple query
+const oracledb = require('oracledb');
+const fs = require('fs');
+const db_query7 = function () {
+    let connection;
+    let chart_file_text;
+    let years = [];
+    let lotSizes =[];
+    try {
+        try {
+            oracledb.initOracleClient({libDir: '/Users/samuelroberson/instantclient_19_8'});
+            console.log("Successful");
+        }
+        catch (e) {}
+        async function run(){
+            try {
+                connection = await oracledb.getConnection({ user: "samuel.roberson", password: "Mfdgn13#", connectionString: "oracle.cise.ufl.edu/orcl" });
+                console.log("Successfully connected to Oracle Database");
+                let result = await connection.execute(
+                `SELECT ((SELECT COUNT(*) FROM Parcel) +
+                (SELECT COUNT(*) FROM Building) +
+                (SELECT COUNT(*) FROM Land) +
+                (SELECT COUNT(*) FROM Sale))as TotalNumTuples
+                FROM Sale
+                FETCH FIRST 1 ROWS ONLY`
+                );
+                
+                console.log(result.rows[0][0]);
+                
+                
+            }
+            catch (e) {
+                console.error(e);
+            }
+            finally {
+                if (connection) {
+                try {
+                    await connection.close();
+                    } 
+                    catch (err) {
+                    console.error(err);
+                    }
+                }
+            }
+        }
+        run();
+    } 
+    catch (err) {
+      console.error(err);
+    } 
+}
+module.exports = db_query7; -->
   <p style = "color: #edf5e1;"> We have 1,336,476 total tuples. </p>
                     <h2 style= "color: #05386B;">How to see it in action?</h2>
                 <p style = "color:#edf5e1">Click on any of the "Queries" in the navigation bar.</p>
