@@ -1,0 +1,49 @@
+body{
+    background-color: #5cdb95;
+    font-family: Lobster;
+    color: #05386B;
+}
+
+.sidenav{
+    background-color: #379683;
+    font-family: Lobster;
+    color: #edf5e1;
+}
+
+#que1:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #que2:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #que3:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #que4:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #que5:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #que6:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #small-desc{
+      color: #edf5e1;
+      width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+  }
