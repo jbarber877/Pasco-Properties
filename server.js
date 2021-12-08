@@ -8,6 +8,7 @@ const db_query2 = require('./queries/db_query2');
 const db_query3 = require('./queries/db_query3');
 const db_query4 = require('./queries/db_query4');
 const db_query5 = require('./queries/db_query5');
+const db_query6 = require('./queries/db_query6');
 
 var server = http.createServer(function(req, res){
 
@@ -55,7 +56,14 @@ var server = http.createServer(function(req, res){
           file = 'Query5_chart.html';
         }
     }
-    
+    if (temp.query=='6'){
+      file = "./Query6.html";
+      if(temp.sqf!== undefined){
+        db_query6(temp.zip);
+        file = 'Query6_chart.html';
+      }
+  }
+  
 
     // pipe to html
     var myReadStream = fs.createReadStream(file);
