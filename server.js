@@ -430,7 +430,7 @@ async function db_query4(year_x, year_y) {
     let chart_file_text;
     try {
   
-      connection = await oracledb.getConnection({ user: "t.schneider", password: "yGzNUcY59fEFBnud0YFaDOmT", connectionString: "oracle.cise.ufl.edu/orcl" });
+      connection = await oracledb.getConnection({ user: "Barber.J", password: "RedCedar3", connectionString: "oracle.cise.ufl.edu/orcl" });
   
       console.log("Successfully connected to Oracle Database");
       let text = ` SELECT extract(year FROM Sale.Sale_Date) as year, 
