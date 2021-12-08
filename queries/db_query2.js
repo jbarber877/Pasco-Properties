@@ -1,6 +1,6 @@
 const oracledb = require('oracledb');
 const fs = require('fs');
-const db_query2 = function (zip, year_x, year_y) {
+const db_query2 = function (zip, zipb, year_x, year_y) {
   let connection;
   let chart_file_text;
   let years = [];
@@ -32,7 +32,7 @@ const db_query2 = function (zip, year_x, year_y) {
                 WHERE sales_with_year.parcel_ID = parcel_test.parcel_ID AND parcel_test.site_zip = ${zip} 
                 GROUP BY year
                 )
-                SELECT sales_per_year_total.year, (sales_per_year_zip.sales / sales_per_year_total.sales) AS percent
+                SELECT sales_per_year_total.year, (sales_per_year_zip.sales / sales_per_year_total.sales)*100 AS percent
                 FROM sales_per_year_zip, sales_per_year_total
                 WHERE sales_per_year_total.year = sales_per_year_zip.year AND sales_per_year_total.year >= ${year_x}  AND sales_per_year_total.year <=  ${year_y}
                 ORDER BY year
@@ -44,8 +44,38 @@ const db_query2 = function (zip, year_x, year_y) {
                 years.push(pair[0]);
                 percentages.push(pair[1]);
               })
-              console.log(years);
-              console.log(percentages);
+
+              let resultb = await connection.execute(
+                `
+                  WITH sales_with_year AS (
+                  SELECT Sale_ID, Parcel_ID, EXTRACT(year FROM Sale_Date) year
+                  FROM SALE_TEST
+                  ),
+                  sales_per_year_total(year, sales) AS (
+                  SELECT year, count(*)
+                  FROM sales_with_year
+                  GROUP BY year
+                  ),
+                  sales_per_year_zip(year, sales) AS (
+                  SELECT year, count(*)
+                  FROM sales_with_year, parcel_test
+                  WHERE sales_with_year.parcel_ID = parcel_test.parcel_ID AND parcel_test.site_zip = ${zipb} 
+                  GROUP BY year
+                  )
+                  SELECT sales_per_year_total.year, (sales_per_year_zip.sales / sales_per_year_total.sales)*100 AS percent
+                  FROM sales_per_year_zip, sales_per_year_total
+                  WHERE sales_per_year_total.year = sales_per_year_zip.year AND sales_per_year_total.year >= ${year_x}  AND sales_per_year_total.year <=  ${year_y}
+                  ORDER BY year
+                `
+                );
+                let yearsb = [];
+                let percentagesb =[];
+                resultb.rows.forEach((pair) => {
+                  yearsb.push(pair[0]);
+                  percentagesb.push(pair[1]);
+                })
+                console.log(percentages);
+                console.log(percentagesb);
               chart_file_text = 
                   `
                     <!DOCTYPE html>
@@ -71,7 +101,14 @@ const db_query2 = function (zip, year_x, year_y) {
                                   backgroundColor: 'rgb(255, 99, 132)',
                                   borderColor: 'rgb(255, 99, 132)',
                                   data: [${percentages}]
-                                }]
+                                },
+                                {
+                                  label: 'Percentage of total Pasco County sales in zip code ${zipb}',
+                                  backgroundColor: 'rgb(0, 99, 132)',
+                                  borderColor: 'rgb(0, 99, 132)',
+                                  data: [${percentagesb}]
+                                }
+                              ]
                               };
                               const config = {
                                 type: 'line',

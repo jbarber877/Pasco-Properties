@@ -14,15 +14,22 @@
                               document.getElementById("return").onclick = () => {
                                   location.search = '';
                               }
-                              const labels = [2015,2016,2017,2018,2019,2020];
+                              const labels = [2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021];
                               const data = {
                                 labels: labels,
                                 datasets: [{
-                                  label: 'Percentage of total Pasco County sales in zip code 33523',
+                                  label: 'Percentage of total Pasco County sales in zip code 33525',
                                   backgroundColor: 'rgb(255, 99, 132)',
                                   borderColor: 'rgb(255, 99, 132)',
-                                  data: [0.0145793174598865,0.015161036920659902,0.012086330935251802,0.013725918907757002,0.013144021930132801,0.0119459920694674]
-                                }]
+                                  data: [2.02347852950263,2.1101178254414497,2.06481608095173,2.2360248447205002,2.10680639643798,2.22833202409008,2.43405275779376,2.05038505453927,2.21644291370868,2.0227877327711705,1.8755395118888798]
+                                },
+                                {
+                                  label: 'Percentage of total Pasco County sales in zip code 33559',
+                                  backgroundColor: 'rgb(0, 99, 132)',
+                                  borderColor: 'rgb(0, 99, 132)',
+                                  data: [0.714396045721347,0.745490728748776,0.705592779980856,1.0048309178744,0.9502348437542422,0.8012568735271013,0.8321342925659473,1.01061633019945,0.7310044281999015,0.825678863624956,0.5964058698893511]
+                                }
+                              ]
                               };
                               const config = {
                                 type: 'line',

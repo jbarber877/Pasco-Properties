@@ -1,40 +1,39 @@
-
-                    <!DOCTYPE html>
+<!DOCTYPE html>
                     <html lang="en">
-                      <head>
-                      </head>
+                        <head>
+                        </head>
                         <body>
-                          <h1>Query Results</h1>
-                          <h2 id="return">return</h2>
-                          <div >
-                              <canvas id="myChart"></canvas>
-                          </div>
-                          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                          <script >
-                              document.getElementById("return").onclick = () => {
-                                  location.search = '';
-                              }
-                              const labels = [];
-                              const data = {
+                            <h1>Query Results</h1>
+                            <h2 id="return">Return</h2>
+                            <div >
+                                <canvas id="myChart"></canvas>
+                            </div>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            <script>
+                                document.getElementById("return").onclick = () => {
+                                    location.search = '';
+                                }
+                                const labels = [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021];
+                                const data = {
                                 labels: labels,
                                 datasets: [{
-                                  label: 'Percentage of total Pasco County sales in zip code 33559',
-                                  backgroundColor: 'rgb(255, 99, 132)',
-                                  borderColor: 'rgb(255, 99, 132)',
-                                  data: []
+                                    label: 'Median Lot Size (sqft) for zipcode 33525',
+                                    backgroundColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: [38480,22500,21425,28477,20072,18419,21000,20295,21911,9728.5,123364,135936,37918.5,20188,12960,70567,1,60111,35881.5,13681,12533,56648]
                                 }]
-                              };
-                              const config = {
+                                };
+                                const config = {
                                 type: 'line',
                                 data: data,
                                 options: {}
-                              };
-                            // === include 'setup' then 'config' above ===
-                      
-                            const myChart = new Chart(
-                              document.getElementById('myChart'),
-                              config
-                            );
-                          </script>
+                                };
+                                // === include 'setup' then 'config' above ===
+                                
+                                const myChart = new Chart(
+                                    document.getElementById('myChart'),
+                                    config
+                                );
+                            </script>
                         </body>
                     </html>

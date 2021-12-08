@@ -29,7 +29,7 @@ var server = http.createServer(function(req, res){
     if (temp.query=='2'){
         file = "./Query2.html";
         if(temp.zip!== undefined){
-            db_query2(temp.zip, temp.year_x, temp.year_y);
+            db_query2(temp.zip, temp.zipb, temp.year_x, temp.year_y);
             file = 'Query2_chart.html';
         }
     }
