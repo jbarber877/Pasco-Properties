@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <link href = "index.css" rel = "stylesheet" type = "text/css">
+        <script src="https://kit.fontawesome.com/de27bd6bac.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
+    
+        <style>
+          /* Basic Css */
+          body{  padding: 30px;}
+          h1{font-size: 48px; text-transform: uppercase; letter-spacing: 2px; text-align: center;}
+          
+          .middle-message{text-align: center;}
+    
+          /* The sidebar menu */
+          .sidenav {height: 100%; width: 200px; position: fixed; z-index: 1; top: 0; left: 0; overflow-x: hidden; padding-top: 20px;}
+          .sidenav h2 {padding: 6px 8px 6px 16px; text-decoration: none; font-size: 25px; display: block;}
+          .sidenav h2:hover {color: #f1f1f1;}
+    
+          /* Style page content */
+          .main {margin-left: 160px; padding: 0px 10px;} 
+          .main h2{text-align: center;}
+          .main p{padding-left: 60px; padding-top: 60px;}    
+      </style>
+      </head>
+<body>
+    <div class="sidenav">
+        <h2 id="que1">Query 1: Median Lot Size by zip</h2>
+          <h2 id="que2">Query 2: Percentage of total sales by zip</h2>
+          <h2 id="que3">Query 3: Tax Exemption Exploitation</h2>
+          <h2 id="que4">Query 4: Sinkholes and Sales Price</h2>
+          <h2 id="que5">Query 5: Value Over Time</h2>
+        <h2 id="que6">Query 6: Avg Price Sold by Zip</h2>
+      </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="middle-message">
+    <h1>Pasco Properties</h1>
+    <h2>Query 6</h1>
+    <h2 id="query-description">  </h2>
+    <h4 id="small-desc"> Plotting by year shows if the houses tend to be increasing or decreasing in value over time. These queries can further be stratified by zip code to identify market trends geographically.</h4>
+    <h3 id= "query-prompt"></h3>
+    <form id="userInput"></form>
+    <canvas id = "myChart"></canvas>
+  </div>
+<script>
+     // ------------for navigation:
+document.getElementById("que1").onclick = (e) => {
+    location.search = 'query=1';
+};
+document.getElementById("que2").onclick = (e) => {
+    location.search = 'query=2';
+};
+document.getElementById("que3").onclick = () => {
+  location.search = 'query=3';
+}
+document.getElementById("que4").onclick = () => {
+  location.search = 'query=4';
+}
+document.getElementById("que5").onclick = () => {
+  location.search = 'query=5';
+}
+document.getElementById("que6").onclick = () => {
+  location.search = 'query=6';
+}
+    // Show query description and user prompt
+    document.getElementById("query-description").innerHTML= "What was the average price of a home sold each year in a given zip code?";
+    document.getElementById("query-prompt").innerHTML="Enter a zip code:"
+    // create form for user input
+    const qform = document.getElementById("userInput");
+    const in1 = document.createElement("input");
+    in1.type = "number";
+    in1.id= "zipcode";
+    const sub = document.createElement("input");
+    sub.type = "submit";
+    const temp = qform.replaceChildren(in1, sub);
+    // set up submit button
+    qform.addEventListener("submit", (e) => {
+    e.preventDefault();
+    z = document.getElementById("zipcode").value;
+    //const yx = document.getElementById("year_x").value;
+    //const yy = document.getElementById("year_y").value;
+    location.search += '&zip=' + z;
+    })
+</script>
+</body>
+</html>
