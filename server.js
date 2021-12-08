@@ -469,7 +469,7 @@ async function db_query4(year_x, year_y) {
             const data = {
               labels: labels,
               datasets: [{
-                label: 'Avg Sale Price of Houses Yearly in Zip Code` + zip + `',
+                label: 'Avg Sale Price of Houses Yearly in Zip Code ` + zip + `',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: [` + avgprice + `]
