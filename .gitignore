@@ -1,3 +1,6 @@
+# Chart pages
+Query[0-9]_chart.html
+
 # Logs
 logs
 *.log
