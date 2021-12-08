@@ -1,12 +1,78 @@
 
                     <!DOCTYPE html>
                     <html lang="en">
-                      <head>
-                      </head>
+                    <head>
+                    <link href = "index.css" rel = "stylesheet" type = "text/css">
+                    <script src="https://kit.fontawesome.com/de27bd6bac.js" crossorigin="anonymous"></script>
+                    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
+                
+                    <style>
+                      /* Basic Css */
+                      body{ background-color: #5cdb95; font-family:Lobster; color: #05386b; padding: 30px;}
+                      h1{font-size: 48px; text-transform: uppercase; letter-spacing: 2px; text-align: center;}
+                      
+                      .middle-message{text-align: center; margin: 300px; margin-top: 0;}
+                
+                      /* The sidebar menu */
+                      .sidenav {height: 100%; width: 200px; position: fixed; z-index: 1; top: 0; left: 0; background-color: #379683; overflow-x: hidden; padding-top: 20px;}
+                      .sidenav h2 {padding: 6px 8px 6px 16px; text-decoration: none; font-size: 25px; color: #edf5e1; display: block;}
+                      .sidenav h2:hover {color: #f1f1f1;}
+                      #que1:hover {
+                        text-decoration: underline;
+                        cursor: pointer;
+                      }
+                
+                      #que2:hover{
+                        text-decoration: underline;
+                        cursor: pointer;
+                      }
+                
+                      #que3:hover{
+                        text-decoration: underline;
+                        cursor: pointer;
+                      }
+                
+                      #que4:hover{
+                        text-decoration: underline;
+                        cursor: pointer;
+                      }
+                
+                      #que5:hover{
+                        text-decoration: underline;
+                        cursor: pointer;
+                      }
+                
+                      #que6:hover{
+                        text-decoration: underline;
+                        cursor: pointer;
+                      }
+                
+                      /* Style page content */
+                      .main {margin-left: 160px; padding: 0px 10px;} 
+                      .main h2{text-align: center;}
+                      .main p{padding-left: 60px; padding-top: 60px;}  
+                      .about {text-align: center; margin: 300px; margin-top: 0;} 
+                      
+                      #chart{
+                          margin-left:200px;
+                      }
+                  </style>
+                  </head>
                         <body>
+                        <div class="sidenav">
+                        <h2 id="home">Home</h2>
+                            <h2 id="que1">Query 1: Median Lot Size by Zip</h2>
+                            <h2 id="que2">Query 2: Percentage of Total Sales by Zip</h2>
+                            <h2 id="que3">Query 3: Tax Exemption Exploitation</h2>
+                            <h2 id="que4">Query 4: Sinkholes and Sales Price</h2>
+                            <h2 id="que5">Query 5: Value Over Time</h2>
+                            <h2 id="que6">Query 6: Avg Price Sold by Zip </h2>
+                        </div>
                           <h1>Query Results</h1>
                           <h2 id="return">return</h2>
-                          <div >
+                          <div id="chart">
                               <canvas id="myChart"></canvas>
                           </div>
                           <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,20 +80,20 @@
                               document.getElementById("return").onclick = () => {
                                   location.search = '';
                               }
-                              const labels = [2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021];
+                              const labels = [2011,2012,2013,2014,2015,2016,2017,2018,2019,2020];
                               const data = {
                                 labels: labels,
                                 datasets: [{
-                                  label: 'Percentage of total Pasco County sales in zip code 33525',
-                                  backgroundColor: 'rgb(255, 99, 132)',
-                                  borderColor: 'rgb(255, 99, 132)',
-                                  data: [2.02347852950263,2.1101178254414497,2.06481608095173,2.2360248447205002,2.10680639643798,2.22833202409008,2.43405275779376,2.05038505453927,2.21644291370868,2.0227877327711705,1.8755395118888798]
+                                  label: 'Percentage of total Pasco County sales in zip code 33559',
+                                  backgroundColor: '#568ec7',
+                                borderColor: '#568ec7',
+                                  data: [0.714396045721347,0.745490728748776,0.705592779980856,1.0048309178744,0.9502348437542422,0.8012568735271013,0.8321342925659473,1.01061633019945,0.7310044281999015,0.825678863624956]
                                 },
                                 {
-                                  label: 'Percentage of total Pasco County sales in zip code 33559',
-                                  backgroundColor: 'rgb(0, 99, 132)',
-                                  borderColor: 'rgb(0, 99, 132)',
-                                  data: [0.714396045721347,0.745490728748776,0.705592779980856,1.0048309178744,0.9502348437542422,0.8012568735271013,0.8321342925659473,1.01061633019945,0.7310044281999015,0.825678863624956,0.5964058698893511]
+                                  label: 'Percentage of total Pasco County sales in zip code 33576',
+                                  backgroundColor: '#05386b',
+                                borderColor: '#05386b',
+                                  data: [1.11214087117702,1.02978804055975,4.148776152057979,1.38302277432712,0.9556647571471235,0.8824299554857292,0.9112709832134293,1.18553069504166,2.0969518052529197,1.86969833860362]
                                 }
                               ]
                               };
@@ -42,6 +108,27 @@
                               document.getElementById('myChart'),
                               config
                             );
+                            document.getElementById("home").onclick = (e) => {
+                        location.search = '';
+                    };
+                            document.getElementById("que1").onclick = (e) => {
+                              location.search = 'query=1';
+                          };
+                          document.getElementById("que2").onclick = (e) => {
+                              location.search = 'query=2';
+                          };
+                          document.getElementById("que3").onclick = () => {
+                            location.search = 'query=3';
+                          }
+                          document.getElementById("que4").onclick = () => {
+                            location.search = 'query=4';
+                          }
+                          document.getElementById("que5").onclick = () => {
+                            location.search = 'query=5';
+                          }
+                          document.getElementById("que6").onclick = () => {
+                            location.search = 'query=6';
+                          }
                           </script>
                         </body>
                     </html>
