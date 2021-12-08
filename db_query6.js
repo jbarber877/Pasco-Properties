@@ -10,7 +10,7 @@ async function db_query6(zip) {
       let text = ` SELECT extract(year FROM Sale.Sale_Date) as year, 
       round(avg(price),0) as avgprice
       FROM Parcel, Sale
-      WHERE Pacel.Parcel_ID = Sale.Parcel_ID AND site_zip = ` + zip + `
+      WHERE Parcel.Parcel_ID = Sale.Parcel_ID AND site_zip = ` + zip + `
       GROUP BY extract(year from Sale.Sale_Date), site_zip
       ORDER BY year
       `;
