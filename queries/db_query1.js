@@ -6,14 +6,9 @@ const db_query1 = function (zip, year_x, year_y) {
     let years = [];
     let lotSizes =[];
     try {
-        try {
-            oracledb.initOracleClient({libDir: '/Users/samuelroberson/instantclient_19_8'});
-            console.log("Successful");
-        }
-        catch (e) {}
         async function run(){
-            try {
-                connection = await oracledb.getConnection({ user: "barber.j", password: "RedCedar3", connectionString: "oracle.cise.ufl.edu/orcl" });
+            try {       // fill in USERNAME and PASSWORD
+                connection = await oracledb.getConnection({ user: "USERNAME", password: "PASSWORD", connectionString: "oracle.cise.ufl.edu/orcl" });
                 console.log("Successfully connected to Oracle Database");
                 let result = await connection.execute(
                 `select BLDG_ACTYRBLT as Year, median(LAND_SQ_FT) as Median_Lot_Size from
