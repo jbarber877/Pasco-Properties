@@ -5,14 +5,9 @@ function db_query6(zip) {
     let connection;
     let chart_file_text;
     try {
-      try { 
-          oracledb.initOracleClient({libDir: '/Users/samuelroberson/instantclient_19_8'});
-          console.log("Successful");
-      }
-      catch (e) {}
       async function run(){
           try {
-              connection = await oracledb.getConnection({ user: "Barber.J", password: "RedCedar3", connectionString: "oracle.cise.ufl.edu/orcl"});
+              connection = await oracledb.getConnection({ user: "USERNAME", password: "PASSWORD", connectionString: "oracle.cise.ufl.edu/orcl"});
   
               console.log("Successfully connected to Oracle Database");
               let text = ` SELECT extract(year FROM Sale.Sale_Date) as year, 
