@@ -6,14 +6,9 @@ const db_query7 = function () {
     let years = [];
     let lotSizes =[];
     try {
-        try {
-            oracledb.initOracleClient({libDir: '/Users/samuelroberson/instantclient_19_8'});
-            console.log("Successful");
-        }
-        catch (e) {}
         async function run(){
             try {
-                connection = await oracledb.getConnection({ user: "samuel.roberson", password: "Mfdgn13#", connectionString: "oracle.cise.ufl.edu/orcl" });
+                connection = await oracledb.getConnection({ user: "USERNAME", password: "PASSWORD", connectionString: "oracle.cise.ufl.edu/orcl" });
                 console.log("Successfully connected to Oracle Database");
                 let result = await connection.execute(
                 `SELECT ((SELECT COUNT(*) FROM Parcel) +
