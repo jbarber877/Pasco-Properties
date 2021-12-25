@@ -6,14 +6,10 @@ const db_query2 = function (zip, zipb, year_x, year_y) {
   let years = [];
   let lotSizes =[];
   try {
-      try {
-          oracledb.initOracleClient({libDir: '/Users/samuelroberson/instantclient_19_8'});
-          console.log("Successful");
-      }
-      catch (e) {}
       async function run(){
           try {
-              connection = await oracledb.getConnection({ user: "t.schneider", password: "yGzNUcY59fEFBnud0YFaDOmT", connectionString: "oracle.cise.ufl.edu/orcl" });
+              // fill in USERNAME and PASSWORD
+              connection = await oracledb.getConnection({ user: "USERNAME", password: "PASSWORD", connectionString: "oracle.cise.ufl.edu/orcl" });
               console.log("Successfully connected to Oracle Database");
               let result = await connection.execute(
               `
