@@ -106,7 +106,7 @@ const db_query7 = function () {
         catch (e) {}
         async function run(){
             try {
-                connection = await oracledb.getConnection({ user: "samuel.roberson", password: "Mfdgn13#", connectionString: "oracle.cise.ufl.edu/orcl" });
+                connection = await oracledb.getConnection({ user: "*********", password: "*********", connectionString: "**********" });
                 console.log("Successfully connected to Oracle Database");
                 let result = await connection.execute(
                 `SELECT ((SELECT COUNT(*) FROM Parcel) +
